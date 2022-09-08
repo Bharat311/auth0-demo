@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+file_path = Rails.root.join('db', 'data', 'users.yml')
+
+YAML.load_file(file_path).each do |attributes|
+  User.where(attributes).first_or_create
+end
